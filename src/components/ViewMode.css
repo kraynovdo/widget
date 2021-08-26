@@ -1,0 +1,15 @@
+.demo-vm {
+    display: inline-flex;
+    height: 24px;
+    box-sizing: border-box;
+    border: 1px solid #513bbf;
+    border-radius: 1000px;
+    padding: 0 8px;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.demo-vm:hover {
+    background: #eeebff;
+}

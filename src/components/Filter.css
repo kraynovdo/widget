@@ -1,0 +1,16 @@
+.demo-filter__item {
+    display: inline-flex;
+    height: 24px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 1000px;
+    padding: 0 8px;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.demo-filter__item_selected {
+    background: #535353;
+    color: #fff;
+}

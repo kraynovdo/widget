@@ -1,0 +1,10 @@
+.demo-list_item {
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.demo-list_item_true {
+    text-decoration: line-through;
+    color: #999;
+}

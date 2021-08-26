@@ -1,0 +1,15 @@
+.demo-del {
+    display: inline-flex;
+    height: 24px;
+    box-sizing: border-box;
+    border: 1px solid #e50c00;
+    border-radius: 1000px;
+    padding: 0 8px;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.demo-del:hover {
+    background: #ffeceb;
+}

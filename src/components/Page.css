@@ -1,0 +1,22 @@
+.demo-page {
+    height: 100%;
+}
+
+.demo-page__wrapper {
+    width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    height: 100%;
+    padding: 0 12px;
+    font-size: 14px;
+}
+
+.demo-page__header {
+    height: 32px;
+    display: flex;
+    align-items: center;
+}
+
+.demo-filter, .demo-vm {
+    margin-left: 8px;
+}
