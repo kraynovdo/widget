@@ -1,13 +1,15 @@
-import List from "./List";
+import List from "../controls/List";
 import {
     useContextProviderDispatch,
     useContextProviderSelector
-} from "./ContextProvider";
+} from "../ContextProvider";
 
 
 function ListWidget(props) {
+    const name = props.name;
+
     const items = useContextProviderSelector((state) => {
-        return state.list.items
+        return state[name].items;
     });
 
     return <List items={items}  />;

@@ -1,22 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const searchSlice = createSlice({
     name: "search",
     initialState: {
-        value: ""
+        values: {}
     },
     reducers: {
         changeSearch: {
             reducer(state, action) {
-                console.log(state);
-                state.value = action.payload;
-
-
+                if (!state.values[action.payload.name]) {
+                    state.values[action.payload.name] = '';
+                }
+                state.values[action.payload.name] = action.payload.value;
             },
-            prepare(value) {
+            prepare(meta) {
                 return {
-                    payload: value
+                    payload: meta
                 };
             }
         }

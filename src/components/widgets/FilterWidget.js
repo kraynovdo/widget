@@ -1,10 +1,10 @@
-import Filter from "./Filter";
+import Filter from "../controls/Filter";
 import {
     useContextProviderDispatch,
     useContextProviderSelector
-} from "./ContextProvider";
+} from "../ContextProvider";
 
-import { actions as filterActions } from "./FilterSlice";
+import { actions as filterActions } from "../stores/FilterSlice";
 
 export default function WidgetFilter1(props) {
     const filter = useContextProviderSelector((state) => state.filter);
