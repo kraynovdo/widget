@@ -1,0 +1,10 @@
+.demo-pageSelect {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+}
+
+.demo-pageSelect__select {
+    height: 2em;
+}
