@@ -1,0 +1,8 @@
+.demo-popupPage {
+    padding: 24px;
+}
+
+.demo-popupPage__button {
+    border-radius: 1em;
+    height: 2em;
+}
