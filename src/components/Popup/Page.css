@@ -6,3 +6,24 @@
     border-radius: 1em;
     height: 2em;
 }
+
+.demo-popupPage__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.demo-popupPage__grid-item {
+    display: contents;
+}
+
+.demo-popupPage__grid-item:hover .demo-popupPage__grid-item-column {
+    background: #cccccc;
+    cursor: pointer;
+}
+
+.demo-popupPage__grid-item-column {
+    border: 1px solid #999;
+    padding: 0.2em;
+    height: 2em;
+    line-height: 2em;
+}

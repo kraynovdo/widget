@@ -2,7 +2,7 @@ import Search from "../controls/Search";
 import {
     useContextProviderDispatch,
     useContextProviderSelector
-} from "../ContextProvider";
+} from "../../../ContextProvider";
 
 import { actions as searchActions } from "../stores/SearchSlice";
 
