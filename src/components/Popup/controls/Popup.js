@@ -1,10 +1,17 @@
 import React from 'react';
-import './Page.css';
+import './Popup.css';
+import {ContextProvider} from '../../../ContextProvider';
+import PrefetchAwaiter from './PrefetchAwaiter';
 
-export default function PopupPage() {
+export default function Popup({template: Template, templateOptions, preloadData, onClose}) {
    return (
-      <div className="demo-popupPage">
-         <button className="demo-popupPage__button">Открыть попап</button>
+      <div className="demo-Popup">
+         <button className="demo-Popup__closeButton" onClick={() => onClose?.()}>X</button>
+         <ContextProvider store={preloadData}>
+            <PrefetchAwaiter>
+               <Template {...templateOptions}/>
+            </PrefetchAwaiter>
+         </ContextProvider>
       </div>
    );
 };

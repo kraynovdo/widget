@@ -1,0 +1,25 @@
+.demo-Popup {
+    position: fixed;
+    height: 100%;
+    width: 700px;
+    background: white;
+    border: #999999;
+    box-shadow: -5px 0px 5px 0px rgba(50, 50, 50, 0.75);
+    top: 0;
+    right: 0;
+}
+
+.demo-Popup__closeButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 24px;
+    height: 2em;
+    width: 2em;
+    border-radius: 0 0 0 1em;
+    cursor: pointer;
+}
+
+.demo-Popup__closeButton:hover {
+    background: #999999;
+}

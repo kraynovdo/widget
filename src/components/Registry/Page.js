@@ -6,7 +6,7 @@ import './Page.css'
 import SearchWidget from './widgets/SearchWidget';
 import {Provider} from 'react-redux';
 import { configureStore, createSlice } from '@reduxjs/toolkit'
-import { ContextProvider} from './ContextProvider';
+import { ContextProvider} from '../../ContextProvider';
 
 import searchSlice from './stores/SearchSlice';
 import filterSlice from "./stores/FilterSlice";

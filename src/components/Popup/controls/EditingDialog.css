@@ -1,0 +1,41 @@
+.demo-Popup__editingDialog {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    flex: 1;
+    padding-left: 20px;
+}
+
+.demo-Popup__editingDialog-header {
+    height: 3em;
+    line-height: 3em;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-right: 60px;
+}
+
+.demo-Popup__editingDialog-body {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1;
+    padding-top: 20px;
+}
+
+.demo-Popup__editingDialog-button {
+    height: 2em;
+    border-radius: 1em;
+}
+
+.demo-Popup__editingDialog-input label {
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 12px;
+}
+
+.demo-Popup__editingDialog-products-label {
+    font-size: 20px;
+    font-weight: bold;
+}
