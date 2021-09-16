@@ -1,4 +1,4 @@
-import {pagex} from './Custom/pagex';
+import {pagex} from '../Custom/pagex';
 const CONFIGS = {
    ...pagex
 };

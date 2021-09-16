@@ -1,6 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit';
-import listProvider from './Platform/DataLoader/listProvider';
-import recordProvider from './Platform/DataLoader/recordProvider';
+import listProvider from './DataLoader/listProvider';
+import recordProvider from './DataLoader/recordProvider';
 
 const LOAD_DATA_METHODS = {
    list: listProvider,
