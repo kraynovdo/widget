@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import './Page.css';
 import Popup from './Platform/controls/Popup';
 import RecordProvider from './Custom/data/RecordProvider';
-import loadPageConfig from './loadPageConfig';
-import DataLoader from './DataLoader';
+import loadPageConfig from './Platform/loadPageConfig';
+import DataLoader from './Platform/DataLoader';
 
 
 export default function PopupPage() {
