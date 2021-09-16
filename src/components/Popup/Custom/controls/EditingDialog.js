@@ -1,8 +1,8 @@
 import React from 'react';
-import {actions as RecordActions} from '../stores/Record';
-import {useContextProviderDispatch, useContextProviderSelector} from '../../../ContextProvider';
+import {actions as RecordActions} from '../../Platform/stores/Record';
+import {useContextProviderDispatch, useContextProviderSelector} from '../../../../ContextProvider';
 import './EditingDialog.css';
-import ListWidget from '../../Registry/widgets/ListWidget';
+import ListWidget from '../../../Registry/widgets/ListWidget';
 
 export default function EditingDialog({headerTemplate: Header, contentTemplate: Content, name}) {
    const record = useContextProviderSelector((state) => {

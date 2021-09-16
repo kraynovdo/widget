@@ -1,4 +1,6 @@
-const dataStorage = [
+import {AbstractSource} from './AbstractSource';
+
+const data = [
    {
       id: 1,
       name: 'Велосипед',
@@ -31,21 +33,4 @@ const dataStorage = [
    }
 ];
 
-function compare(item, filter) {
-   return Object.keys(filter).reduce((reducer, key) => {
-      return reducer && item[key] === filter[key];
-   }, true);
-}
-
-class ProductProvider {
-   query(filter) {
-      return dataStorage.filter((item) => {
-         return compare(item, filter);
-      });
-   }
-   toString() {
-      return '';
-   }
-}
-
-export default new ProductProvider();
+export default new AbstractSource({data});
