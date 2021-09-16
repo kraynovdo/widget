@@ -1,6 +1,5 @@
 import List from "../controls/List";
 import {
-    useContextProviderDispatch,
     useContextProviderSelector
 } from "../../../ContextProvider";
 

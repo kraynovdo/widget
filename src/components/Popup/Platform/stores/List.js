@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-const productSlice = createSlice({
+const listSlice = createSlice({
    name: 'product',
    initialState: {
       items: [],
@@ -44,5 +44,5 @@ const productSlice = createSlice({
       }
    }
 });
-export const actions = productSlice.actions;
-export default productSlice;
+export const actions = listSlice.actions;
+export default listSlice;

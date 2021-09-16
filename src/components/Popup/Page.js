@@ -1,18 +1,19 @@
 import React, {useState} from 'react';
 import './Page.css';
-import Popup from './controls/Popup';
-import RecordProvider from './data/RecordProvider';
+import Popup from './Platform/controls/Popup';
+import RecordProvider from './Custom/data/RecordProvider';
 import loadPageConfig from './loadPageConfig';
-import loadData from './loadData';
+import DataLoader from './DataLoader';
 
 
 export default function PopupPage() {
-   const list = RecordProvider.query();
+   const [list, setList] = useState([]);
+   const [listLoaded, setListLoaded] = useState(false);
    const [popupState, setPopupState] = useState({
       isOpened: false,
       template: null,
       templateOptions: {},
-      preloadData: null
+      prefetchData: null
    });
    function openPopup({record}) {
       const pageCfg = loadPageConfig('recordForm');
@@ -25,7 +26,7 @@ export default function PopupPage() {
          ...popupState,
          template: pageCfg.template,
          templateOptions,
-         preloadData: loadData(pageCfg, templateOptions),
+         prefetchData: DataLoader.load(pageCfg, templateOptions),
          isOpened: true
       });
    }
@@ -33,7 +34,13 @@ export default function PopupPage() {
       setPopupState({
          ...popupState,
          isOpened: false,
-         preloadData: null
+         prefetchData: null
+      });
+   }
+   if (!listLoaded) {
+      RecordProvider.query().then((result) => {
+         setListLoaded(true);
+         setList(result);
       });
    }
    return (
