@@ -7,7 +7,7 @@ const recordSlice = createSlice({
       source: null
    },
    reducers: {
-      create(state, action) {
+      create(state) {
          if (state.source) {
             state.record = state.source.create();
          }

@@ -1,16 +1,24 @@
 import {configureStore} from '@reduxjs/toolkit';
 import listProvider from './DataLoader/listProvider';
 import recordProvider from './DataLoader/recordProvider';
+import {TLoaderProvider, ILoaderProviderResult} from './DataLoader/interface';
+import {EnhancedStore} from '@reduxjs/toolkit/src/configureStore';
 
-const LOAD_DATA_METHODS = {
+const LOAD_DATA_METHODS: Record<string, TLoaderProvider> = {
    list: listProvider,
    record: recordProvider
 };
-function load(pageCfg, options = {}) {
+
+export interface ILoaderResult {
+   store: EnhancedStore;
+   prefetchData: Record<string, ILoaderProviderResult['prefetchData']>;
+}
+
+function load(pageCfg: Record<string, any>, options: Record<string, any> = {}): ILoaderResult {
    const loaders = pageCfg.prefetchConfig.configLoader.getConfig(options);
-   const reducers = {};
-   const preloadedState = {};
-   const prefetchData = {};
+   const reducers: Record<string, ILoaderProviderResult['initialData']['reducer']> = {};
+   const preloadedState: Record<string, ILoaderProviderResult['initialData']['preloadedState']> = {};
+   const prefetchData: Record<string, ILoaderProviderResult['prefetchData']> = {};
 
    Object.keys(loaders).forEach((key) => {
       const loaderCfg = loaders[key];
