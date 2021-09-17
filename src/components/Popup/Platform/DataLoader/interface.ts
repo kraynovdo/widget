@@ -14,4 +14,6 @@ export interface ILoaderProviderResult {
     }
 }
 export type TLoaderConfig = IRecordLoaderConfig | IListLoaderConfig;
-export type TLoaderProvider = (cfg: TLoaderConfig) => ILoaderProviderResult;
+export interface ILoaderProvider {
+    load(cfg: TLoaderConfig): ILoaderProviderResult;
+}
