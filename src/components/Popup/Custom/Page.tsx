@@ -37,7 +37,7 @@ export default function PopupPage() {
             ))}
          </div>
          {popupState.isOpened ?
-            <Popup {...popupState} onClose={Opener.close}/> :
+            <Popup {...popupState} onClose={Opener.close.bind(this, popupState, setPopupState)}/> :
             <div></div>
          }
       </div>
