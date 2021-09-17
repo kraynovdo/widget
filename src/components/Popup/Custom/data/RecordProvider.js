@@ -1,4 +1,4 @@
-import {AbstractSource} from './AbstractSource';
+import {AbstractSource} from '../../Platform/data/AbstractSource';
 
 const data = [
    {

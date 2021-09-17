@@ -1,8 +1,9 @@
 import RecordProvider from './data/RecordProvider';
 import ProductProvider from './data/ProductProvider';
+import {IConfigLoader} from '../Platform/loadPageConfig';
 
-export const CONFIG_LOADER = {
-   getConfig(data = {}) {
+export const CONFIG_LOADER: IConfigLoader = {
+   getConfig(data: any = {}) {
       return {
          editDialog: {
             type: 'record',

@@ -1,9 +1,18 @@
 import React, {useState} from 'react';
 import {ContextProvider} from '../../../../ContextProvider';
+import {ILoaderResult} from '../DataLoader';
+import {ILoaderProviderResult} from '../DataLoader/interface';
 
-function awaitPrefetch(prefetchData) {
-   const actions = [];
-   const promises = [];
+type TAwaitPrefetchResult = Array<{
+   prefetchResult: any,
+   updateAction: ILoaderProviderResult['prefetchData']['updateAction']
+}>;
+
+function awaitPrefetch(
+    prefetchData: ILoaderResult['prefetchData']
+): Promise<TAwaitPrefetchResult> {
+   const actions: Array<ILoaderProviderResult['prefetchData']['updateAction']> = [];
+   const promises: Array<ILoaderProviderResult['prefetchData']['promise']> = [];
    Object.keys(prefetchData).forEach((key) => {
       const {promise, updateAction} = prefetchData[key] || {};
       if (promise && updateAction) {
@@ -11,7 +20,7 @@ function awaitPrefetch(prefetchData) {
          actions.push(updateAction);
       }
    });
-   return Promise.allSettled(promises).then((results) => {
+   return Promise.allSettled<any[]>(promises).then((results) => {
       return results.map((result, index) => {
          return {
             prefetchResult: result.value,
@@ -21,7 +30,12 @@ function awaitPrefetch(prefetchData) {
    });
 }
 
-function PrefetchContainer({prefetchData, children}) {
+interface IPrefetchContainerProps {
+   prefetchData: ILoaderResult;
+   children: any;
+}
+
+function PrefetchContainer({prefetchData, children}: IPrefetchContainerProps) {
    const [store, setStore] = useState();
    if (!store || prefetchData.store !== store) {
       setStore(prefetchData.store);
