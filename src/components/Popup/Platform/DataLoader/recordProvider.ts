@@ -9,7 +9,8 @@ export interface IRecordLoaderConfig {
    record?: Record<string, any>;
 }
 
-export default function loadEditDialog({source, key, record}: IRecordLoaderConfig): ILoaderProviderResult {
+const provider = {
+   load({source, key, record}: IRecordLoaderConfig): ILoaderProviderResult {
    const promiseResult = source.read(key);
    return {
       initialData: {
@@ -24,4 +25,7 @@ export default function loadEditDialog({source, key, record}: IRecordLoaderConfi
          updateAction: RecordActions.changeRecord
       }
    }
-};
+}
+}
+
+export default provider;

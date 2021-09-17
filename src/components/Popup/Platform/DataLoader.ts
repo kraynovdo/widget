@@ -1,10 +1,10 @@
 import {configureStore} from '@reduxjs/toolkit';
 import listProvider from './DataLoader/listProvider';
 import recordProvider from './DataLoader/recordProvider';
-import {TLoaderProvider, ILoaderProviderResult} from './DataLoader/interface';
+import {ILoaderProvider, ILoaderProviderResult} from './DataLoader/interface';
 import {EnhancedStore} from '@reduxjs/toolkit/src/configureStore';
 
-const LOAD_DATA_METHODS: Record<string, TLoaderProvider> = {
+const LOAD_DATA_METHODS: Record<string, ILoaderProvider> = {
    list: listProvider,
    record: recordProvider
 };
@@ -22,7 +22,7 @@ function load(pageCfg: Record<string, any>, options: Record<string, any> = {}): 
 
    Object.keys(loaders).forEach((key) => {
       const loaderCfg = loaders[key];
-      const {initialData, prefetchData: preloadResult} = LOAD_DATA_METHODS[loaderCfg.type](loaderCfg);
+      const {initialData, prefetchData: preloadResult} = LOAD_DATA_METHODS[loaderCfg.type].load(loaderCfg);
       reducers[key] = initialData.reducer;
       preloadedState[key] = initialData.preloadedState;
       prefetchData[key] = preloadResult;
