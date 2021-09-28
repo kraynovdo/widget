@@ -4,9 +4,9 @@ import PrefetchContainer from './PrefetchContainer';
 import {ILoaderResult} from '../DataLoader';
 
 export interface IPopupProps {
-    template: React.Component<any>;
+    template: any;
     templateOptions?: Record<string, any>;
-    prefetchData?: ILoaderResult;
+    prefetchData: ILoaderResult;
     onClose?: Function;
 }
 

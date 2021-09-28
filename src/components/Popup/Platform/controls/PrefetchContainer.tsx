@@ -4,7 +4,7 @@ import {ILoaderResult} from '../DataLoader';
 import {ILoaderProviderResult} from '../DataLoader/interface';
 
 type TAwaitPrefetchResult = Array<{
-   prefetchResult: any,
+   prefetchResult: any | void,
    updateAction: ILoaderProviderResult['prefetchData']['updateAction']
 }>;
 
@@ -15,16 +15,23 @@ function awaitPrefetch(
    const promises: Array<ILoaderProviderResult['prefetchData']['promise']> = [];
    Object.keys(prefetchData).forEach((key) => {
       const {promise, updateAction} = prefetchData[key] || {};
-      if (promise && updateAction) {
+      if (promise) {
          promises.push(promise);
          actions.push(updateAction);
       }
    });
    return Promise.allSettled<any[]>(promises).then((results) => {
       return results.map((result, index) => {
-         return {
-            prefetchResult: result.value,
-            updateAction: actions[index]
+         if (result.status === 'rejected') {
+            return {
+               prefetchResult: void 0,
+               updateAction: actions[index]
+            }
+         } else {
+            return {
+               prefetchResult: result.value,
+               updateAction: actions[index]
+            }
          }
       });
    });
@@ -36,7 +43,7 @@ interface IPrefetchContainerProps {
 }
 
 function PrefetchContainer({prefetchData, children}: IPrefetchContainerProps) {
-   const [store, setStore] = useState();
+   const [store, setStore] = useState<any>();
    if (!store || prefetchData.store !== store) {
       setStore(prefetchData.store);
       const prefetch = prefetchData.prefetchData;

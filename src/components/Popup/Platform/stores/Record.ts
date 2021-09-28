@@ -7,19 +7,19 @@ const recordSlice = createSlice({
       source: null
    },
    reducers: {
-      create(state) {
+      create(state: any) {
          if (state.source) {
             state.record = state.source.create();
          }
       },
 
       update: {
-         reducer(state, action) {
+         reducer(state: any, action) {
             if (state.source) {
                state.source.update(action.payload.record);
             }
          },
-         prepare(record) {
+         prepare(record): any {
             return {
                payload: {
                   record
@@ -29,12 +29,12 @@ const recordSlice = createSlice({
       },
 
       read: {
-         reducer(state, action) {
+         reducer(state: any, action) {
             if (state.source) {
                state.record = state.source.read(action.payload.key);
             }
          },
-         prepare(key) {
+         prepare(key): any {
             return {
                payload: {
                   key
@@ -44,12 +44,12 @@ const recordSlice = createSlice({
       },
 
       delete: {
-         reducer(state, action) {
+         reducer(state: any, action) {
             if (state.source) {
                state.source.delete(action.payload.key);
             }
          },
-         prepare(key) {
+         prepare(key): any {
             return {
                payload: {
                   key
@@ -59,10 +59,10 @@ const recordSlice = createSlice({
       },
 
       changeField: {
-         reducer(state, {payload: {fieldName, value}}) {
+         reducer(state: any, {payload: {fieldName, value}}) {
             state.record[fieldName] = value;
          },
-         prepare(fieldName, value) {
+         prepare(fieldName, value): any {
             return {
                payload: {
                   fieldName,
@@ -76,7 +76,7 @@ const recordSlice = createSlice({
          reducer(state, {payload: {record}}) {
             state.record = record;
          },
-         prepare(record) {
+         prepare(record): any {
             return {
                payload: {
                   record

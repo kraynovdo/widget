@@ -4,7 +4,7 @@ import {AbstractSource} from '../data/AbstractSource';
 
 export interface IListLoaderConfig {
    type: 'list';
-   source: AbstractSource;
+   source: AbstractSource<any>;
    filter?: Record<string, any>;
 }
 
