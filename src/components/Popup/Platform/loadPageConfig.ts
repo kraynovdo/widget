@@ -24,7 +24,7 @@ export interface IConfigLoader {
 }
 
 interface IPageConfig {
-   template: React.Component | Function,
+   template: React.Component | Function | null,
    templateOptions: Record<string, any>,
    prefetchConfig: {
       configLoader: IConfigLoader

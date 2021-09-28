@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import './Page.css';
 import Popup from '../Platform/controls/Popup';
-import RecordProvider, { IItem } from './data/RecordProvider';
 import * as Opener from '../Platform/controls/Opener';
+import PageContainer from "../Platform/controls/PageContainer";
+import DataLoader from "../Platform/DataLoader";
+import loadConfig from "../Platform/loadPageConfig";
+import ListWidget from "../Platform/controls/ListWidget";
 
 function getPopupOptions(item: Record<string, any>) {
    return {
@@ -16,30 +19,22 @@ function getPopupOptions(item: Record<string, any>) {
 }
 
 export default function PopupPage() {
-   const [list, setList] = useState<IItem[]>([] as IItem[]);
-   const [listLoaded, setListLoaded] = useState(false);
    const [popupState, setPopupState] = useState<any>({});
-   if (!listLoaded) {
-      RecordProvider.query().then((result) => {
-         setListLoaded(true);
-         setList(result);
-      });
+   const [prefetchStore, setPrefetchStore] = useState<any>();
+
+   if (!prefetchStore) {
+      // Эта часть будет в платформе в общем компоненте страницы
+      setPrefetchStore(DataLoader.load(loadConfig('registryPage')));
    }
    return (
-      <div className="demo-popupPage">
-         <div className="demo-popupPage__grid">
-            {list.map((item) => (
-               <div key={item.id} className="demo-popupPage__grid-item" onClick={() => Opener.open(getPopupOptions(item), setPopupState)}>
-                  <div className="demo-popupPage__grid-item-column">{item.id}</div>
-                  <div className="demo-popupPage__grid-item-column">{item.number}</div>
-                  <div className="demo-popupPage__grid-item-column">{item.title}</div>
-               </div>
-            ))}
-         </div>
-         {popupState.isOpened ?
-            <Popup {...popupState} onClose={() => Opener.close(popupState, setPopupState)}/> :
-            <div></div>
-         }
-      </div>
+       <PageContainer prefetchStore={prefetchStore}>
+          <div className="demo-popupPage">
+             <ListWidget name="recordsList" onClick={(item: any) => Opener.open(getPopupOptions(item), setPopupState)}/>
+             {popupState.isOpened ?
+                 <Popup {...popupState} onClose={() => Opener.close(popupState, setPopupState)}/> :
+                 <div></div>
+             }
+          </div>
+       </PageContainer>
    );
 };

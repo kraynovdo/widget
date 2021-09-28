@@ -11,7 +11,7 @@ function open({templateOptions = {}, pageId}: IPopupCfg, setPopupState: Function
     setPopupState({
         template: pageCfg.template,
         templateOptions,
-        prefetchData: DataLoader.load(pageCfg, templateOptions),
+        prefetchStore: DataLoader.load(pageCfg, templateOptions),
         isOpened: true
     });
 }
@@ -20,7 +20,7 @@ function close(cfg: IPopupCfg, setPopupState: Function): void {
     setPopupState({
         ...cfg,
         isOpened: false,
-        prefetchData: null
+        prefetchStore: null
     });
 }
 
