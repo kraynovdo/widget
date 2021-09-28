@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './Page.css';
 import Popup from '../Platform/controls/Popup';
-import RecordProvider from './data/RecordProvider';
+import RecordProvider, { IItem } from './data/RecordProvider';
 import * as Opener from '../Platform/controls/Opener';
 
 function getPopupOptions(item: Record<string, any>) {
@@ -16,9 +16,9 @@ function getPopupOptions(item: Record<string, any>) {
 }
 
 export default function PopupPage() {
-   const [list, setList] = useState([]);
+   const [list, setList] = useState<IItem[]>([] as IItem[]);
    const [listLoaded, setListLoaded] = useState(false);
-   const [popupState, setPopupState] = useState({});
+   const [popupState, setPopupState] = useState<any>({});
    if (!listLoaded) {
       RecordProvider.query().then((result) => {
          setListLoaded(true);
@@ -37,7 +37,7 @@ export default function PopupPage() {
             ))}
          </div>
          {popupState.isOpened ?
-            <Popup {...popupState} onClose={Opener.close.bind(this, popupState, setPopupState)}/> :
+            <Popup {...popupState} onClose={() => Opener.close(popupState, setPopupState)}/> :
             <div></div>
          }
       </div>

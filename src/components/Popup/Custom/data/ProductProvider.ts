@@ -1,6 +1,12 @@
-import {AbstractSource} from '../../Platform/data/AbstractSource';
+import {AbstractSource, IItem as IDefaultItem} from '../../Platform/data/AbstractSource';
 
-const data = [
+export interface IItem extends IDefaultItem {
+   id: number;
+   name: string;
+   documentKey: number;
+}
+
+const data: IItem[] = [
    {
       id: 1,
       name: 'Велосипед',
@@ -33,4 +39,4 @@ const data = [
    }
 ];
 
-export default new AbstractSource({data});
+export default new AbstractSource<IItem>({data, keyProperty: 'id'});

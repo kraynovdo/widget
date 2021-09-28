@@ -4,8 +4,8 @@ import {AbstractSource} from '../data/AbstractSource';
 
 export interface IRecordLoaderConfig {
    type: 'record';
-   key?: string | number;
-   source: AbstractSource;
+   key: string | number;
+   source: AbstractSource<any>;
    record?: Record<string, any>;
 }
 

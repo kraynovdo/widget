@@ -13,7 +13,7 @@ const listSlice = createSlice({
          reducer(state, action) {
             state.items = action.payload.items;
          },
-         prepare(items) {
+         prepare(items): any {
             return {
                payload: {
                   items
@@ -22,13 +22,13 @@ const listSlice = createSlice({
          }
       },
       changeFilter: {
-         reducer(state, action) {
+         reducer(state: any, action) {
             state.filter[action.payload.fieldName] = action.payload.value;
             if (state.source) {
                state.items = state.source.query(state.filter);
             }
          },
-         prepare(fieldName, value) {
+         prepare(fieldName, value): any {
             return {
                payload: {
                   fieldName,
@@ -37,7 +37,7 @@ const listSlice = createSlice({
             };
          }
       },
-      resetFilter(state) {
+      resetFilter(state: any) {
          Object.keys(state).forEach((key) => {
             state[key] = undefined;
          });
