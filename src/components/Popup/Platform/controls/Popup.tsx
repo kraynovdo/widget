@@ -1,22 +1,22 @@
 import React from 'react';
 import './Popup.css';
-import PrefetchContainer from './PrefetchContainer';
-import {ILoaderResult} from '../DataLoader';
+import PageContainer from './PageContainer';
+import {EnhancedStore} from "@reduxjs/toolkit";
 
 export interface IPopupProps {
     template: any;
     templateOptions?: Record<string, any>;
-    prefetchData: ILoaderResult;
+    prefetchStore: EnhancedStore;
     onClose?: Function;
 }
 
-export default function Popup({template: Template, templateOptions = {}, prefetchData, onClose}: IPopupProps) {
+export default function Popup({template: Template, templateOptions = {}, prefetchStore, onClose}: IPopupProps) {
    return (
-      <div className="demo-Popup">
-         <button className="demo-Popup__closeButton" onClick={() => onClose?.()}>X</button>
-         <PrefetchContainer prefetchData={prefetchData}>
-            <Template {...templateOptions}/>
-         </PrefetchContainer>
-      </div>
+       <PageContainer prefetchStore={prefetchStore}>
+          <div className="demo-Popup">
+              <button className="demo-Popup__closeButton" onClick={() => onClose?.()}>X</button>
+              <Template {...templateOptions}/>
+          </div>
+       </PageContainer>
    );
 };
