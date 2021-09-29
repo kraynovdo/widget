@@ -2,6 +2,7 @@ import List from "../controls/List";
 import {
     useContextProviderSelector
 } from "../../../ContextProvider";
+import ViewController from "../controllers/ViewController";
 
 
 function ListWidget(props) {
@@ -11,7 +12,11 @@ function ListWidget(props) {
         return state[name].items;
     });
 
-    return <List items={items}  />;
+    const viewMode = useContextProviderSelector((state) => {
+        return state.viewMode;
+    });
+
+    return <List items={items} viewMode />;
 }
 
 export default ListWidget;

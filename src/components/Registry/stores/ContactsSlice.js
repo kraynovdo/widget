@@ -23,6 +23,7 @@ const contactsSlice = createSlice({
 
             if (action.payload.name === state.searchName) {
                 state.items = myContactsProvider.searchQuery(action.payload.value)
+                state.viewController.setViewMode('tile');
             }
         }
     }

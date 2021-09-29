@@ -8,7 +8,10 @@ function List(props) {
     )
 
     return (
-        <div className="demo-list">{listItems.length ? listItems : '--Не найдено--'}</div>
+        <div>
+            <h1>viewMode: {props.viewMode}</h1>
+            <div className="demo-list">{listItems.length ? listItems : '--Не найдено--'}</div>
+        </div>
     );
 }
 

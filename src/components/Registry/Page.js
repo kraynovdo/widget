@@ -19,6 +19,8 @@ import PeopleProvider from './data/PeopleProvider';
 import TasksProvider from './data/TasksProvider';
 import ContactsProvider from './data/ContactsProvider';
 
+import ViewModeController from './controllers/ViewController';
+
 function Page() {
 
     /*USER INFO*/
@@ -48,6 +50,9 @@ function Page() {
 
     const contactsProvider = new ContactsProvider();
     const contactsList = contactsProvider.query();
+    const viewController = new ViewModeController({
+        viewMode: 'list'
+    });
 
 
     const store1 = configureStore({
@@ -75,8 +80,9 @@ function Page() {
             },
             contacts: {
                 items: [...contactsList],
+                viewMode: viewController.getViewMode(),
                 searchName: 'search2'
-            }
+            },
         }
     });
 
